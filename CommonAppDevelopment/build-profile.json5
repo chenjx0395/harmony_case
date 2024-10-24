@@ -30,6 +30,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "addresschange",
+      "srcPath": "./feature/addresschange",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

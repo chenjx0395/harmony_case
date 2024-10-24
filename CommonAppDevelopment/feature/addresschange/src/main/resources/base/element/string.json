@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AddresschangeAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AddresschangeAbility_label",
+      "value": "label"
+    }
+  ]
+}
