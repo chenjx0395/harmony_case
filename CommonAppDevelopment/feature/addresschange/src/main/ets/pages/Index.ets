@@ -1,61 +1,72 @@
-import { Position } from '@kit.ArkUI'
+import { curves, promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  @State animate: boolean = false;
-  @State addressLeftOffset: Position = { x: 0, y: 0 }
-  @State addressRightOffset: Position = { x: 0, y: 0 }
-  @State addressRotate: RotateOptions = {angle: 0}
+  //是否已交换
+  @State isSwap: boolean = false;
+  // X轴偏移量
+  @State translateX: number = 0;
+  // 旋转角度
+  @State rotateAngle: number = 0
+  // 整体内容区宽度
+  private rowWidth: number = 300;
 
   build() {
-    Column() {
-      Column() {
-        // 地址栏
-        Row() {
-          Text('北京').fontSize(18).offset(this.addressLeftOffset)
-          Stack() {
-            Image($r('app.media.address_exchange_recycle')).width(30)
-              .rotate(this.addressRotate)
-            Image($r('app.media.address_exchange_airplane')).width(20)
-          }.onClick(_ => {
-            console.log('xx')
-            this.getUIContext()?.animateTo({duration: 500},()=>{
-              this.animate = !this.animate
-              this.addressLeftOffset = this.animate ? {x:260,y:0} :  {x:0,y:0}
-              this.addressRightOffset = this.animate ? {x:-260,y:0} :  {x:0,y:0}
-              this.addressRotate = this.animate ? {angle: 360} :  {angle: 0}
+    Column({ space: 15 }) {
+      // 地址栏
+      Row() {
+        Text('北京')
+          .width('40%')
+          .translate({ x: this.translateX })
+          .textAlign(this.isSwap ? TextAlign.End : TextAlign.Start)
+        // 层叠图片
+        Stack() {
+          Image($r('app.media.address_exchange_recycle'))
+            .width(28)
+            .rotate({ angle: this.rotateAngle })
+            // animation 实现图片动画
+            .animation({
+              curve: curves.springMotion(),
+              playMode: PlayMode.Normal
             })
-
+          Image($r('app.media.address_exchange_airplane')).width(16)
+        }
+        .width('20%')
+        .onClick(_ => {
+          this.isSwap = !this.isSwap
+          animateTo({duration: 500 , curve: Curve.Linear},()=>{
+          this.translateX = this.isSwap ? 180 : 0
           })
-          Text('上海').fontSize(18).offset(this.addressRightOffset)
-        }.justifyContent(FlexAlign.SpaceBetween).width('100%').margin({ top: 20 })
+          this.rotateAngle += 180
+        })
 
-        // 日期显示
-        Text() {
-          Span('2月8日').fontSize(24).fontWeight(700)
-          Span('   ')
-          Span('周四').fontSize(18)
-        }.textAlign(TextAlign.Start).width('100%')
+        Text('上海')
+          .width('40%')
+          .translate({ x: -this.translateX })
+          .textAlign(this.isSwap ? TextAlign.Start : TextAlign.End)
+      }.width(this.rowWidth).height(60)
 
-        // 按钮
-        Button('查询车票')
-          .width('100%')
-      }
-      .backgroundColor('#F2F3F5')
-      .width('100%')
-      .height(200)
-      .borderRadius(10)
-      .padding(10)
-      .justifyContent(FlexAlign.SpaceBetween)
+      // 日期显示
+      Row({ space: 20 }) {
+        Text('10月24日').fontSize(24).fontWeight(500).height(30)
+        Text('周四').fontSize(18).height(30)
+      }.width(this.rowWidth)
+
+      // 按钮
+      Button('查询车票')
+        .width(this.rowWidth)
+        .height(40)
+        .onClick(_ => {
+          promptAction.showToast({
+            message: "演示效果，业务未实现",
+          })
+        })
     }
-    .height('100%')
-    .width('100%')
-    .padding({
-      left: 20,
-      right: 20,
-      top: 30,
-      bottom: 30
-    })
+    .backgroundColor('#F2F3F5')
+    .borderRadius(10)
+    .height('180')
+    .width('95%')
+    .margin(10)
   }
 }
