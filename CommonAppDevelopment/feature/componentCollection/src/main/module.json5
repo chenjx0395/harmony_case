@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name": "componentCollection",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "ComponentCollectionAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "ComponentCollectionAbility",
+        "srcEntry": "./ets/componentcollectionability/ComponentCollectionAbility.ets",
+        "description": "$string:ComponentCollectionAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:ComponentCollectionAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}

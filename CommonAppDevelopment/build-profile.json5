@@ -42,6 +42,30 @@
           ]
         }
       ]
+    },
+    {
+      "name": "customTabbar",
+      "srcPath": "./feature/customTabbar",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "componentCollection",
+      "srcPath": "./feature/componentCollection",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

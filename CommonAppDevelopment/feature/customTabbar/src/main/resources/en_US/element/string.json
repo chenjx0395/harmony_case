@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CustomTabbarAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CustomTabbarAbility_label",
+      "value": "label"
+    }
+  ]
+}

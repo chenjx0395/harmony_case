@@ -1,0 +1,11 @@
+{
+  "name": "componentcollection",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libcomponentcollection.so": "file:./src/main/cpp/types/libcomponentcollection"
+  }
+}
